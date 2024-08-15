@@ -76,4 +76,4 @@ This tool is provided as-is, without any warranties. Use at your own risk.
 
 ## Contact
 
-For any issues or suggestions, please contact the developer at [email@example.com].
+For any issues or suggestions, please contact the developer at [joa.gottlebe@gmail.com].
