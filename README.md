@@ -12,9 +12,12 @@
 - **Backup Option**: Automatically backup the original PDF before compressing it.
 - **Open PDF**: Optionally open the compressed PDF using the default PDF viewer after processing.
 
-## Installation
+## Installation with Homebrew
 
-Download most current release and move file to `/usr/local/bin/`.
+```sh
+brew tap huaqo/huaqo
+brew install pdfc
+```
 
 ## Usage
 
