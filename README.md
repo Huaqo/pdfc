@@ -12,6 +12,10 @@
 - **Backup Option**: Automatically backup the original PDF before compressing it.
 - **Open PDF**: Optionally open the compressed PDF using the default PDF viewer after processing.
 
+## Installation
+
+Download and run the current release.
+
 ## Usage
 
 ```bash
