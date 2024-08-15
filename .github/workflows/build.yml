@@ -10,32 +10,16 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [macos-latest]
         arch: [x86_64, arm64]
-        include:
-          - os: windows-latest
-            arch: x86_64
-          - os: windows-latest
-            arch: arm64
-          - os: macos-latest
-            arch: x86_64
-          - os: macos-latest
-            arch: arm64
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
     - name: Set up environment for macOS
-      if: matrix.os == 'macos-latest'
       run: |
         brew install gcc
-
-    - name: Set up environment for Windows
-      if: matrix.os == 'windows-latest'
-      run: |
-        choco install mingw
-        echo "::add-path::C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin"
 
     - name: Compile PDFC
       run: |
@@ -45,7 +29,7 @@ jobs:
     - name: Upload binaries
       uses: actions/upload-artifact@v3
       with:
-        name: pdfc-${{ matrix.os }}-${{ matrix.arch }}
+        name: pdfc-${{ matrix.arch }}
         path: pdfc-${{ matrix.arch }}
 
   release:
@@ -58,7 +42,7 @@ jobs:
     - name: Download Binaries
       uses: actions/download-artifact@v3
       with:
-        name: pdfc-${{ matrix.os }}-${{ matrix.arch }}
+        name: pdfc-${{ matrix.arch }}
 
     - name: Create GitHub Release
       id: create_release
@@ -78,7 +62,7 @@ jobs:
         asset_path: pdfc-x86_64
         asset_name: pdfc-macos-x86_64
         asset_content_type: application/octet-stream
-      if: matrix.os == 'macos-latest' && matrix.arch == 'x86_64'
+      if: matrix.arch == 'x86_64'
 
     - name: Upload Release Asset (macOS arm64)
       uses: actions/upload-release-asset@v1
@@ -87,22 +71,4 @@ jobs:
         asset_path: pdfc-arm64
         asset_name: pdfc-macos-arm64
         asset_content_type: application/octet-stream
-      if: matrix.os == 'macos-latest' && matrix.arch == 'arm64'
-
-    - name: Upload Release Asset (Windows x86_64)
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: pdfc-x86_64
-        asset_name: pdfc-windows-x86_64.exe
-        asset_content_type: application/octet-stream
-      if: matrix.os == 'windows-latest' && matrix.arch == 'x86_64'
-
-    - name: Upload Release Asset (Windows arm64)
-      uses: actions/upload-release-asset@v1
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: pdfc-arm64
-        asset_name: pdfc-windows-arm64.exe
-        asset_content_type: application/octet-stream
-      if: matrix.os == 'windows-latest' && matrix.arch == 'arm64'
+      if: matrix.arch == 'arm64'
