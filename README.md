@@ -1,9 +1,9 @@
 
-# PDF Compressor Tool
+# PDF Compressor Tool (`pdfc`)
 
 ## Overview
 
-This tool is a command-line utility for compressing PDF files using GhostScript. It allows you to specify the compression quality, create backups, and optionally open the compressed PDF after processing.
+`pdfc` is a command-line utility for compressing PDF files using GhostScript. It allows you to specify the compression quality, create backups, and optionally open the compressed PDF after processing. This tool can be easily installed via Homebrew.
 
 ## Features
 
@@ -12,14 +12,18 @@ This tool is a command-line utility for compressing PDF files using GhostScript.
 - **Backup Option**: Automatically backup the original PDF before compressing it.
 - **Open PDF**: Optionally open the compressed PDF using the default PDF viewer after processing.
 
-## Dependencies
+## Installation
 
-- **GhostScript**: This tool requires GhostScript to be installed and accessible from the command line. The script will automatically detect GhostScript from common installation paths.
+You can install `pdfc` via Homebrew:
+
+```bash
+brew install pdfc
+```
 
 ## Usage
 
 ```bash
-pdf_compressor input_file [-o output_file] [-c compress_level] [-b] [--open]
+pdfc input_file [-o output_file] [-c compress_level] [-b] [--open]
 ```
 
 ### Parameters
@@ -39,25 +43,25 @@ pdf_compressor input_file [-o output_file] [-c compress_level] [-b] [--open]
 
 1. **Basic Compression with Default Settings**:
     ```bash
-    pdf_compressor myfile.pdf
+    pdfc myfile.pdf
     ```
     This will compress `myfile.pdf` with the `/printer` quality level and overwrite the original file.
 
 2. **Compression with Custom Output**:
     ```bash
-    pdf_compressor myfile.pdf -o compressed.pdf
+    pdfc myfile.pdf -o compressed.pdf
     ```
     This will compress `myfile.pdf` with the `/printer` quality level and save it as `compressed.pdf`.
 
 3. **Compression with Backup and Custom Quality**:
     ```bash
-    pdf_compressor myfile.pdf -c 4 -b
+    pdfc myfile.pdf -c 4 -b
     ```
     This will compress `myfile.pdf` with the `/screen` quality level, create a backup of the original file, and overwrite the original with the compressed version.
 
 4. **Compression and Open PDF Afterward**:
     ```bash
-    pdf_compressor myfile.pdf --open
+    pdfc myfile.pdf --open
     ```
     This will compress `myfile.pdf` and then open the compressed file using the default PDF viewer.
 
