@@ -14,7 +14,7 @@
 
 ## Installation
 
-Download and run the current release.
+Download most current release and move file to `/usr/local/bin/`.
 
 ## Usage
 
