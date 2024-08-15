@@ -12,14 +12,6 @@
 - **Backup Option**: Automatically backup the original PDF before compressing it.
 - **Open PDF**: Optionally open the compressed PDF using the default PDF viewer after processing.
 
-## Installation
-
-You can install `pdfc` via Homebrew:
-
-```bash
-brew install pdfc
-```
-
 ## Usage
 
 ```bash
